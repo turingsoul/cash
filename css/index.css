@@ -1,0 +1,27 @@
+body,div,ul,li{
+	margin:0px;
+	padding:0px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;	
+}
+html{
+	width:100%;
+	height:100%;
+}
+body{
+	width:100%;
+	height:100%;
+    background: -moz-radial-gradient(top, #005494 0%, #031426 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#005494), color-stop(100%,#001526));
+    background: -webkit-radial-gradient(top, #005494 0%,#001526 100%);
+    background: -o-radial-gradient(top, #005494 0%,#001526 100%);
+    background: -ms-radial-gradient(top, #005494 0%,#001526 100%);
+    background: radial-gradient(to bottom, #005494 0%,#001526 100%);
+}
+.blackBoard{
+	position: relative;
+	width:100%;
+	height:220px;
+	background:rgb(125, 35, 22);
+}
