@@ -1,0 +1,8 @@
+{
+	"index.html": {
+		"resources": [
+			"css/index.css",
+			"js/angular1.3.js"
+		]
+	}
+}
