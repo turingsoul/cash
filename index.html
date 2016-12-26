@@ -35,11 +35,18 @@
 				</div>
 			</div>
 			<div class="selectButtonList">
-				<div class = "input">Input</div>
-				<div class = "output">Output</div>
-				<div class = "asset">Asset</div>
-				<div class = "debt">Debt</div>
+				<div class = "input" ng-click = "inputClick()" ng-class = {'selectButtonBG':currentChooseButton=="input",'notSelectButtonBG':currentChooseButton!="input"}>Input</div
+				><div class = "output" ng-click = "outputClick()" ng-class = {'selectButtonBG':currentChooseButton=="output",'notSelectButtonBG':currentChooseButton!="output"}>Output</div
+				><div class = "asset" ng-click = "assetClick()" ng-class = {'selectButtonBG':currentChooseButton=="asset",'notSelectButtonBG':currentChooseButton!="asset"}>Asset</div
+				><div class = "debt" ng-click = "debtClick()" ng-class = {'selectButtonBG':currentChooseButton=="debt",'notSelectButtonBG':currentChooseButton!="debt"}>Debt</div>
 			</div>
+			<div class="selectContent">
+				<div class = "inputContent" ng-show = "inputJudge()">1</div>
+				<div class = "outputContent" ng-show = "outputJudge()">2</div>
+				<div class = "assetContent" ng-show = "assetJudge()">3</div>
+				<div class = "debtContent" ng-show = "debtJudge()">4</div>
+			</div>
+			<div class = ""></div>
 		</div>
 		<script src="js/input.js" type="text/javascript" charset="utf-8"></script>
 	</body>
