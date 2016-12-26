@@ -19,9 +19,170 @@ body{
     background: -ms-radial-gradient(top, #005494 0%,#001526 100%);
     background: radial-gradient(to bottom, #005494 0%,#001526 100%);
 }
+.firstPage{
+	position: absolute;
+	top:0px;
+	bottom:0px;
+	width:100%;
+}
+/*cashflow display board*/
 .blackBoard{
 	position: relative;
-	width:100%;
-	height:220px;
-	background:rgb(125, 35, 22);
+	top:20px;
+	width:94%;
+	left:50%;
+	margin-left:-47%;
+	height:60px;
+	background:rgba(0,0,0,0.3);
+	border-radius: 10px;
+	border:1px solid rgba(255,255,255,0.2);
+}
+.blackBoard .cashflow{
+	position: relative;
+	margin-left:10px;
+	line-height:60px;
+	font-size: 20px;
+	color:rgba(255,255,255,0.3);
+}
+.blackBoard .cashflowFont{
+	position: relative;
+	display: inline-block;
+	height:40px;
+	width:64%;
+	line-height:40px;
+	font-size: 26px;
+	letter-spacing: 5px;
+	color:rgba(245,162,54,0.7);
+	border-radius: 10px;
+	text-align: center;
+}
+/*net asset*/
+.pureAsset{
+	position: relative;
+	display: inline-block;
+	margin-top: 25px;
+	width:54%;
+	height:30px;
+	background:red;
+	left:3%;
+	border-radius: 10px;
+	line-height:30px;
+	text-indent: 4px;
+	color:rgba(255,255,255,0.3);
+	border:1px solid rgba(255,255,255,0.2);
+	background:rgba(0,0,0,0.4);
+}
+.pureAsset .spanPureAsset{
+	position: absolute;
+}
+.pureAsset .spanNumberPureAsset{
+	position: absolute;
+	right:4px;
+	color:rgba(245,162,54,0.6);
+}
+/*passiveIncome*/
+.passiveIncome{
+	position:relative;
+	display: inline-block;
+	border-radius: 10px;
+	left:4%;
+	width:37%;
+	height:30px;
+	background:red;
+	color:rgba(255,255,255,0.3);
+	border:1px solid rgba(255,255,255,0.2);
+	background:rgba(0,0,0,0.4);
+}
+.passiveIncome .spanPassiveIncome{
+	position: absolute;
+	line-height:30px;
+	text-indent: 4px;
+}
+.passiveIncome .spanNumberPassiveIncome{
+	position: absolute;
+	right:10px;
+	text-align: center;
+	line-height: 30px;
+	color:rgba(245,162,54,0.6);
+}
+/*cash*/
+.moneyCanUse{
+	position: relative;
+	display: inline-block;
+	left:3%;
+	width:40%;
+	height:30px;
+	border-radius: 10px;
+	color:rgba(255,255,255,0.3);
+	border:1px solid rgba(255,255,255,0.2);
+	background:rgba(0,0,0,0.4);
+}
+.moneyCanUse .spanMoneyCanUse{
+	position: absolute;
+	line-height:30px;
+	text-indent: 4px;
+}
+.moneyCanUse .spanNumberMoney{
+	position: absolute;
+	right:10px;
+	text-align: center;
+	line-height: 30px;
+	color:rgba(245,162,54,0.6);
+}
+/*payment and safety*/
+.monitor{
+	position: relative;
+	display: inline-block;
+	left:3%;
+	line-height:30px;
+	top:-10px;
+	width:52%;
+	height:30px;
+}
+.monitor .balanceOfPayment{
+	position: relative;
+	width:50%;
+	height:30px;
+	box-sizing: border-box;
+	display: inline-block;
+	color:rgba(255,255,255,0.3);
+	border:1px solid rgba(255,255,255,0.2);
+	background:rgba(0,0,0,0.4);
+	border-radius: 6px;
+	text-indent: 10px;
+	
+}
+.monitor .balanceOfPayment>.number{
+	color:rgba(245,162,54,0.6);
+}
+.monitor .balanceOfSafety{
+	float:left;
+	position: relative;
+	width:50%;
+	height:30px;
+	box-sizing: border-box;
+	display: inline-block;
+	color:rgba(255,255,255,0.3);
+	border:1px solid rgba(255,255,255,0.2);
+	background:rgba(0,0,0,0.4);
+	text-indent: 10px;
+	border-radius: 6px;
+}
+.monitor .balanceOfSafety>.number{
+	color:rgba(245,162,54,0.6);
+}
+/*按钮选项*/
+.selectButtonList{
+	position: relative;
+	left:50%;
+	margin-left:-47%;
+	width:94%;
+	height:30px;
+}
+.selectButtonList>div{
+	position: relative;
+	display: inline-block;
+	box-sizing: border-box;
+	width:25%;
+	border:1px solid red;
 }

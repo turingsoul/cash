@@ -205,16 +205,15 @@
 			"index.html": {
 				"resources": [
 					"css/index.css",
-					"js/angular1.3.js"
+					"js/angular1.3.js",
+					"js/input.js"
 				],
 				"refer": [],
 				"priority": 0
 			}
 		},
 		"idle": {
-			"resources": [
-				"js/input.js"
-			]
+			"resources": []
 		}
 	}
 }

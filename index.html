@@ -1,14 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html ng-app = "dashboard">
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/index.css"/>
 	</head>
-	<body>
+	<body ng-controller = "dashboardContrl">
 		<script src="js/angular1.3.js" type="text/javascript" charset="utf-8"></script>
-		<div class="blackBoard">
-			
+		<div class = "firstPage">
+			<div class="blackBoard" >
+				<span class = "cashflow">CashFlow:</span>
+				<span class = "cashflowFont">￥{{cashFlow}}</span>
+			</div>
+			<div class = "pureAsset">
+				<span class = "spanPureAsset">Net-Asset:</span>
+				<span class = "spanNumberPureAsset">{{netAsset}}</span>
+			</div>
+			<div class = "passiveIncome">
+				<span class = "spanPassiveIncome">Passive:</span>
+				<span class = "spanNumberPassiveIncome">{{passiveIncome}}</span>
+			</div>
+			<div class = "moneyCanUse">
+				<span class = "spanMoneyCanUse">Cash:</span>
+				<span class = "spanNumberMoney">{{cash}}</span>
+			</div>
+			<div class = "monitor">
+				<div class = "balanceOfPayment">
+					<span>I/O:</span>
+					<span class = "number">{{balanceOfPayment}}</span>
+				</div>
+				<div class = "balanceOfSafety">
+					<span>Safety:</span>
+					<span class = "number">{{balanceOfSafety}}</span>
+				</div>
+			</div>
+			<div class="selectButtonList">
+				<div class = "input">Input</div>
+				<div class = "output">Output</div>
+				<div class = "asset">Asset</div>
+				<div class = "debt">Debt</div>
+			</div>
 		</div>
+		<script src="js/input.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html> 
