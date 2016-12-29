@@ -3,7 +3,8 @@ body,div,ul,li{
 	padding:0px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
-	-ms-user-select: none;	
+	-ms-user-select: none;
+	font-family: "microsoft yahei";
 }
 html{
 	width:100%;
@@ -229,4 +230,324 @@ body{
 	font-size:20px;
 	color:#ddd;
 	background:rgba(255,0,0,0.5);
+}
+/*输入框*/
+.inputBox{
+	position: absolute;
+	top:40%;
+	margin-top:-50px;
+	left:50%;
+	margin-left:-45%;
+	height:100px;
+	width:90%;
+	border-radius: 10px;
+	background:rgba(0,43,76,1); 
+}
+.inputBox>div.cancel{
+	position: absolute;
+	width:80px;
+	height:30px;
+	border-radius: 10px;
+	line-height: 30px;
+	text-align: center;
+	bottom:6px;
+	left:40px;
+	color:white;
+	background:rgba(200,200,200,0.4);
+}
+.inputBox>div.sure{
+	position: absolute;
+	width: 80px;
+	height:30px;
+	border-radius: 10px;
+	background: rgba(255,85,0,0.8);
+	color:white;
+	text-align: center;
+	line-height: 30px;
+	bottom:6px;
+	right:40px;
+}
+.inputBox>input.inputName{
+	position: absolute;
+	top: 8px;
+	left:20px;
+	background: none;
+	border: none;
+	width:100px;
+	height:26px;
+	font-size: 16px;
+	line-height: 26px;
+	border-bottom: 1px solid #aaa;
+	color:white;
+	outline: none;
+	text-align: center;
+}
+.inputBox>input.inputValue{
+	position: absolute;
+	top: 8px;
+	right:20px;
+	background: none;
+	border: none;
+	width:100px;
+	height:26px;
+	font-size: 16px;
+	line-height: 26px;
+	border-bottom: 1px solid #aaa;
+	color:white;
+	outline: none;
+	text-align: center;
+}
+.inputBox>select.inputChooseSelect{
+	position: absolute;
+	display: inline-block;
+	left:50%;
+	margin-left:-35px;
+	text-align: center;
+	top:18px;
+	outline: none;
+	width:70px;
+	height:20px;
+}
+.inputBox>select.inputChooseSelect>option{
+	text-align: center;
+}
+/*输出框*/
+.outputBox{
+	position: absolute;
+	top:40%;
+	margin-top:-50px;
+	left:50%;
+	margin-left:-45%;
+	height:100px;
+	width:90%;
+	border-radius: 10px;
+	background:rgba(0,43,76,1); 
+}
+.outputBox>div.cancel{
+	position: absolute;
+	width:80px;
+	height:30px;
+	border-radius: 10px;
+	line-height: 30px;
+	text-align: center;
+	bottom:6px;
+	left:40px;
+	color:white;
+	background:rgba(200,200,200,0.4);
+}
+.outputBox>div.sure{
+	position: absolute;
+	width: 80px;
+	height:30px;
+	border-radius: 10px;
+	background: rgba(255,85,0,0.8);
+	color:white;
+	text-align: center;
+	line-height: 30px;
+	bottom:6px;
+	right:40px;
+}
+.outputBox>input.outputName{
+	position: absolute;
+	top: 8px;
+	left:20px;
+	background: none;
+	border: none;
+	width:100px;
+	height:26px;
+	font-size: 16px;
+	line-height: 26px;
+	border-bottom: 1px solid #aaa;
+	color:white;
+	outline: none;
+	text-align: center;
+}
+.outputBox>input.outputValue{
+	position: absolute;
+	top: 8px;
+	right:20px;
+	background: none;
+	border: none;
+	width:100px;
+	height:26px;
+	font-size: 16px;
+	line-height: 26px;
+	border-bottom: 1px solid #aaa;
+	color:white;
+	outline: none;
+	text-align: center;
+}
+.outputBox>select.outputChooseSelect{
+	position: absolute;
+	display: inline-block;
+	left:50%;
+	margin-left:-25px;
+	text-align: center;
+	top:18px;
+	outline: none;
+	width:50px;
+	height:20px;
+}
+.outputBox>select.outputChooseSelect>option{
+	text-align: center;
+}
+/*资产框*/
+.assetBox{
+	position: absolute;
+	top:40%;
+	margin-top:-50px;
+	left:50%;
+	margin-left:-45%;
+	height:100px;
+	width:90%;
+	border-radius: 10px;
+	background:rgba(0,43,76,1); 
+}
+.assetBox>div.cancel{
+	position: absolute;
+	width:80px;
+	height:30px;
+	border-radius: 10px;
+	line-height: 30px;
+	text-align: center;
+	bottom:6px;
+	left:40px;
+	color:white;
+	background:rgba(200,200,200,0.4);
+}
+.assetBox>div.sure{
+	position: absolute;
+	width: 80px;
+	height:30px;
+	border-radius: 10px;
+	background: rgba(255,85,0,0.8);
+	color:white;
+	text-align: center;
+	line-height: 30px;
+	bottom:6px;
+	right:40px;
+}
+.assetBox>input.assetName{
+	position: absolute;
+	top: 8px;
+	left:20px;
+	background: none;
+	border: none;
+	width:100px;
+	height:26px;
+	font-size: 16px;
+	line-height: 26px;
+	border-bottom: 1px solid #aaa;
+	color:white;
+	outline: none;
+	text-align: center;
+}
+.assetBox>input.assetValue{
+	position: absolute;
+	top: 8px;
+	right:20px;
+	background: none;
+	border: none;
+	width:100px;
+	height:26px;
+	font-size: 16px;
+	line-height: 26px;
+	border-bottom: 1px solid #aaa;
+	color:white;
+	outline: none;
+	text-align: center;
+}
+.assetBox>select.assetChooseSelect{
+	position: absolute;
+	display: inline-block;
+	left:50%;
+	margin-left:-25px;
+	text-align: center;
+	top:18px;
+	outline: none;
+	width:50px;
+	height:20px;
+}
+.assetBox>select.assetChooseSelect>option{
+	text-align: center;
+}
+/*负债框*/
+.debtBox{
+	position: absolute;
+	top:40%;
+	margin-top:-50px;
+	left:50%;
+	margin-left:-45%;
+	height:100px;
+	width:90%;
+	border-radius: 10px;
+	background:rgba(0,43,76,1); 
+}
+.debtBox>div.cancel{
+	position: absolute;
+	width:80px;
+	height:30px;
+	border-radius: 10px;
+	line-height: 30px;
+	text-align: center;
+	bottom:6px;
+	left:40px;
+	color:white;
+	background:rgba(200,200,200,0.4);
+}
+.debtBox>div.sure{
+	position: absolute;
+	width: 80px;
+	height:30px;
+	border-radius: 10px;
+	background: rgba(255,85,0,0.8);
+	color:white;
+	text-align: center;
+	line-height: 30px;
+	bottom:6px;
+	right:40px;
+}
+.debtBox>input.debtName{
+	position: absolute;
+	top: 8px;
+	left:20px;
+	background: none;
+	border: none;
+	width:100px;
+	height:26px;
+	font-size: 16px;
+	line-height: 26px;
+	border-bottom: 1px solid #aaa;
+	color:white;
+	outline: none;
+	text-align: center;
+}
+.debtBox>input.debtValue{
+	position: absolute;
+	top: 8px;
+	right:20px;
+	background: none;
+	border: none;
+	width:100px;
+	height:26px;
+	font-size: 16px;
+	line-height: 26px;
+	border-bottom: 1px solid #aaa;
+	color:white;
+	outline: none;
+	text-align: center;
+}
+.debtBox>select.debtChooseSelect{
+	position: absolute;
+	display: inline-block;
+	left:50%;
+	margin-left:-25px;
+	text-align: center;
+	top:18px;
+	outline: none;
+	width:50px;
+	height:20px;
+}
+.debtBox>select.assetChooseSelect>option{
+	text-align: center;
 }
