@@ -41,7 +41,7 @@ angular.module('dashboard',[])
         });
     }
 	/*初始化资产表*/
-	function initAssetTable() {
+	function initAssetTable(){
             var db = getCurrentDb();//初始化数据库
             if(!db) {alert("您的浏览器不支持HTML5本地数据库");return;}
             db.transaction(function (trans) {//启动一个事务，并设置回调函数
@@ -74,21 +74,30 @@ angular.module('dashboard',[])
 		var nodeValue = $scope.inputValue;
 		var tag = $scope.inputChooseNameTag;
 		var db = getCurrentDb();
-		db.transaction(function(trans){
-			initInputTable();
-			/*添加数据进去*/
-			/*初始化数据库输入表*/
-			$scope.inputBoxTag = false;
-			initInputTable();
-			var db = getCurrentDb();
-			db.transaction(function(trans) {
-				trans.executeSql("insert into InputTable(InputName,InputValue,InputTag) values(?,?,?) ", [nodeName,nodeValue,tag], function(ts, data) {
-					/*隐藏输入框*/
-					
-					showAllTheData();
-				}, function(ts, message) {
-					alert(message);
-				});
+		initInputTable();
+		db.transaction(function(trans) {
+			trans.executeSql("select * from InputTable where InputName = ?", [nodeName], function(ts, data) {
+				if(data.rows.length != 0) {
+					alert("项目已存在");
+				} else {
+					initInputTable();
+					/*添加数据进去*/
+					/*初始化数据库输出表*/
+					$scope.InputBoxTag = false;
+					initInputTable();
+					var db = getCurrentDb();
+					db.transaction(function(trans) {
+						trans.executeSql("insert into InputTable(InputName,InputValue,InputTag) values(?,?,?) ", [nodeName, nodeValue, tag], function(ts, data) {
+							/*隐藏输入框*/
+							showAllTheData();
+						}, function(ts, message) {
+							alert(message);
+						});
+					});
+				}
+
+			}, function(ts, message) {
+				alert(message);
 			});
 		});
 	}
@@ -204,6 +213,7 @@ angular.module('dashboard',[])
                 	document.querySelector("#inputList").innerHTML = "";
                 	for(var i=0;i<dataLength;i++){
                 		var newtr=document.createElement("tr");
+                		newtr.setAttribute("onclick","updateInputList(this);")
                 		var td1 = document.createElement("td");
                 		td1.innerHTML = data.rows[i].InputName;
                 		var td2 = document.createElement("td");
@@ -225,7 +235,7 @@ angular.module('dashboard',[])
                 trans.executeSql("select * from OutputTable ", [], function (ts, data) {
                 	var dataLength = data.rows.length;
                 	console.log(data);
-                	/*清空输入表*/
+                	/*清空输出表*/
                 	document.querySelector("#outputList").innerHTML = "";
                 	for(var i=0;i<dataLength;i++){
                 		var newtr=document.createElement("tr");
@@ -236,7 +246,7 @@ angular.module('dashboard',[])
                 		var td3 = document.createElement("td");
                 		td3.innerHTML = data.rows[i].OutputTag;
                 		var td4 = document.createElement("td");
-                		td4.innerHTML = "<span>x</span>";
+                		td4.innerHTML = "<span onclick='deleteOutputList(this)'>x</span>";
                 		newtr.appendChild(td1);
                 		newtr.appendChild(td2);
                 		newtr.appendChild(td3);
@@ -262,7 +272,7 @@ angular.module('dashboard',[])
                 		var td3 = document.createElement("td");
                 		td3.innerHTML = data.rows[i].AssetTag;
                 		var td4 = document.createElement("td");
-                		td4.innerHTML = "<span>x</span>";
+                		td4.innerHTML = "<span onclick='deleteAssetList(this)'>x</span>";
                 		newtr.appendChild(td1);
                 		newtr.appendChild(td2);
                 		newtr.appendChild(td3);
@@ -288,7 +298,7 @@ angular.module('dashboard',[])
                 		var td3 = document.createElement("td");
                 		td3.innerHTML = data.rows[i].DebtTag;
                 		var td4 = document.createElement("td");
-                		td4.innerHTML = "<span>x</span>";
+                		td4.innerHTML = "<span onclick='deleteDebtList(this)'>x</span>";
                 		newtr.appendChild(td1);
                 		newtr.appendChild(td2);
                 		newtr.appendChild(td3);
