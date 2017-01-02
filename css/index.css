@@ -311,6 +311,9 @@ body{
 .inputBox>select.inputChooseSelect>option{
 	text-align: center;
 }
+.selectContent .inputContent{
+	overflow-y: auto;
+}
 /*输出框*/
 .outputBox{
 	position: absolute;

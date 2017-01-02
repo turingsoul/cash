@@ -1,5 +1,6 @@
 angular.module('dashboard',[])
 .controller('dashboardContrl',function($scope){
+	
 	/*
 	 * * * * *                               * * * * * * * * * * * * * 
 	 * * * * *          *  *   *  *          * * * * * * * * * * * * * 
@@ -65,35 +66,62 @@ angular.module('dashboard',[])
             });
         });
     }
+	
 	/*插入收入表*/
 	$scope.submitInput = function(){
+		$scope.inputBoxTag = false;
 		var nodeName = $scope.inputName;
 		var nodeValue = $scope.inputValue;
-		var tag = $scope.inputType;
-		console.log(nodeName,nodeValue,tag);
+		var tag = $scope.inputChooseNameTag;
 		var db = getCurrentDb();
-		db.transaction(function(trans) {
-			trans.executeSql("select InputTag from InputTable where InputName = ?", [nodeName], function(ts, data) {
-				if (data.rows.length == 0) {
-					/*添加数据进去*/
-					/*初始化数据库输入表*/
-					initInputTable();
-					var db = getCurrentDb();
-					db.transaction(function(trans) {
-						trans.executeSql("insert into InputTable(InputName,InputValue,InputTag) values(?,?,?) ", [nodeName,nodeValue,tag], function(ts, data) {
-							/*$("#addInput").hide(500);
-							$("#input_add1").val("");
-							$("#input_add2").val("");
-							showAllTheData();*/
-						}, function(ts, message) {
-							/*console.log(message);*/
-						});
-					});
-				}
-			}, function(ts, message) {});
-	
+		db.transaction(function(trans){
+			initInputTable();
+			/*添加数据进去*/
+			/*初始化数据库输入表*/
+			$scope.inputBoxTag = false;
+			initInputTable();
+			var db = getCurrentDb();
+			db.transaction(function(trans) {
+				trans.executeSql("insert into InputTable(InputName,InputValue,InputTag) values(?,?,?) ", [nodeName,nodeValue,tag], function(ts, data) {
+					/*隐藏输入框*/
+					
+					showAllTheData();
+				}, function(ts, message) {
+					alert(message);
+				});
+			});
 		});
 	}
+	
+	function showAllTheData() {
+            var db = getCurrentDb();//获取当前数据库
+            /*展示输入表数据*/
+            db.transaction(function (trans) {
+                trans.executeSql("select * from InputTable ", [], function (ts, data) {
+                	var dataLength = data.rows.length;
+                	/*清空输入表*/
+                	document.querySelector("#inputList").innerHTML = "";
+                	for(var i=0;i<dataLength;i++){
+                		var newtr=document.createElement("tr");
+                		var td1 = document.createElement("td");
+                		td1.innerHTML = data.rows[i].InputName;
+                		var td2 = document.createElement("td");
+                		td2.innerHTML = data.rows[i].InputValue;
+                		var td3 = document.createElement("td");
+                		td3.innerHTML = data.rows[i].InputTag;
+                		var td4 = document.createElement("td");
+                		td4.innerHTML = "<span>x</span>";
+                		newtr.appendChild(td1);
+                		newtr.appendChild(td2);
+                		newtr.appendChild(td3);
+                		newtr.appendChild(td4);
+                		document.querySelector("#inputList").appendChild(newtr);
+						                		
+                	}
+                }, function(ts, message) {initInputTable();});
+            });
+    }
+	showAllTheData();
 	$scope.inputNames = ["工资","利息","补贴","股息","生意","公积金","IQ产权","退休金","网络","其他"];
 	$scope.outputNames = ["衣","食","住","行","娱","文化","生活","赡养","还贷"];
 	$scope.assetNames = ["存款","股票","房产","汽车","债券","期权"];
@@ -114,6 +142,8 @@ angular.module('dashboard',[])
 	$scope.outputBoxTag = false;
 	$scope.assetBoxTag = false;
 	$scope.debtBoxTag = false;
+	/*输入表显示内容*/
+	/*$scope.inputListTableContent = [{InputName:"3",InputTag:"工资",InputValue:"3"}];*/
 	$scope.inputClick = function(){
 		$scope.currentChooseButton = "input";
 		
