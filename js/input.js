@@ -238,7 +238,6 @@ angular.module('dashboard',[])
 					trans.executeSql("select * from OutputTable ", [], function(ts, data) {
 						var dataLength = data.rows.length;
 						var outputSum = 0;
-						console.log(data);
 						/*清空输出表*/
 						document.querySelector("#outputList").innerHTML = "";
 						for(var i = 0; i < dataLength; i++) {
@@ -277,10 +276,13 @@ angular.module('dashboard',[])
 			trans.executeSql("select * from AssetTable ", [], function(ts, data) {
 				var dataLength = data.rows.length;
 				var assetSum = 0;
-				console.log(data);
+				var cashSum = 0;
 				/*清空输入表*/
 				document.querySelector("#assetList").innerHTML = "";
 				for(var i = 0; i < dataLength; i++) {
+					if(data.rows[i].AssetTag == "存款"){
+						cashSum = cashSum + parseInt(data.rows[i].AssetValue);
+					}
 					assetSum = assetSum + parseInt(data.rows[i].AssetValue)
 					var newtr = document.createElement("tr");
 					var td1 = document.createElement("td");
@@ -301,12 +303,12 @@ angular.module('dashboard',[])
 					document.querySelector("#assetList").appendChild(newtr);
 				}
 				document.querySelector("#assetSum").innerHTML = assetSum;
+				document.querySelector(".moneyCanUse>.spanNumberMoney").innerHTML = cashSum;
 				/*展示负债表数据*/
 				db.transaction(function(trans) {
 					trans.executeSql("select * from DebtTable ", [], function(ts, data) {
 						var dataLength = data.rows.length;
 						var debtSum = 0;
-						console.log(data);
 						/*清空输入表*/
 						document.querySelector("#debtList").innerHTML = "";
 						for(var i = 0; i < dataLength; i++) {
@@ -341,22 +343,6 @@ angular.module('dashboard',[])
 			});
 		});
 		
-		/*计算手头现金额*/
-		db.transaction(function(trans) {
-					trans.executeSql("select * from AssetTable where AssetTag = '存款'", function(ts, data) {
-						var dataLength = data.rows.length;
-						alert(dataLength);
-						var CashSum = 0;
-						for(var i = 0; i < dataLength; i++) {
-							CashSum = CashSum+parseInt(data.rows[i].AssetValue); 
-						}
-						/*显示手头现金额*/
-						document.querySelector(".moneyCanUse>.spanNumberMoney").innerHTML = CashSum;
-					}, function(ts, message) {
-						alert(message);
-						initAssetTable();
-					});
-		});
 	}
 	
 	showAllTheData();
