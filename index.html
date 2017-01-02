@@ -44,9 +44,15 @@
 				<div class = "inputContent" ng-show = "inputJudge()">
 					<table id="inputList"></table>
 				</div>
-				<div class = "outputContent" ng-show = "outputJudge()">2</div>
-				<div class = "assetContent" ng-show = "assetJudge()">3</div>
-				<div class = "debtContent" ng-show = "debtJudge()">4</div>
+				<div class = "outputContent" ng-show = "outputJudge()">
+					<table id="outputList"></table>
+				</div>
+				<div class = "assetContent" ng-show = "assetJudge()">
+					<table id="assetList"></table>
+				</div>
+				<div class = "debtContent" ng-show = "debtJudge()">
+					<table id="debtList"></table>
+				</div>
 			</div>
 			<div class = "newItem" ng-click = "showContentBox()">新建</div>
 			<!--输入框-->
@@ -62,8 +68,8 @@
 			<div class="outputBox" ng-show = "outputBoxTag">
 				<div class = "cancel" ng-click = "closeOutput()">取消</div>
 				<div class="sure" ng-click = "submitOutput()">确定</div>
-				<input type="text" class="outputName"/>
-				<input type="text" class="outputValue" />
+				<input type="text" class="outputName" ng-model = "outputName"/>
+				<input type="text" class="outputValue" ng-model = "outputValue"/>
 				<select name="" class="outputChooseSelect" ng-model = "outputChooseNameTag" ng-options = "x for x in outputNames">
 				</select>
 			</div>
@@ -71,8 +77,8 @@
 			<div class="assetBox" ng-show = "assetBoxTag">
 				<div class = "cancel" ng-click = "closeAsset()">取消</div>
 				<div class="sure" ng-click = "submitAsset()">确定</div>
-				<input type="text" class="assetName"/>
-				<input type="text" class="assetValue" />
+				<input type="text" class="assetName" ng-model = "assetName"/>
+				<input type="text" class="assetValue" ng-model = "assetValue"/>
 				<select name="" class="assetChooseSelect" ng-model = "assetChooseNameTag" ng-options = "x for x in assetNames">
 				</select>
 			</div>
@@ -80,8 +86,8 @@
 			<div class="debtBox" ng-show = "debtBoxTag">
 				<div class = "cancel" ng-click = "closeDebt()">取消</div>
 				<div class="sure" ng-click = "submitDebt()">确定</div>
-				<input type="text" class="debtName"/>
-				<input type="text" class="debtValue" />
+				<input type="text" class="debtName" ng-model = "debtName"/>
+				<input type="text" class="debtValue" ng-model = "debtValue"/>
 				<select name="" class="debtChooseSelect" ng-model = "debtChooseNameTag" ng-options = "x for x in debtNames">
 				</select>
 			</div>

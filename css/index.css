@@ -314,6 +314,17 @@ body{
 .selectContent .inputContent{
 	overflow-y: auto;
 }
+#inputList{
+	width:100%;
+}
+#inputList>tr{
+	width:100%;
+	background: red;
+}
+#inputList>tr>td{
+	text-align: center;
+	width: 25%;
+}
 /*输出框*/
 .outputBox{
 	position: absolute;
@@ -393,6 +404,20 @@ body{
 }
 .outputBox>select.outputChooseSelect>option{
 	text-align: center;
+}
+.selectContent .outputContent{
+	overflow-y: auto;
+}
+#outputList{
+	width:100%;
+}
+#outputList>tr{
+	width:100%;
+	background: red;
+}
+#outputList>tr>td{
+	text-align: center;
+	width: 25%;
 }
 /*资产框*/
 .assetBox{
@@ -474,6 +499,20 @@ body{
 .assetBox>select.assetChooseSelect>option{
 	text-align: center;
 }
+.selectContent .assetContent{
+	overflow-y: auto;
+}
+#assetList{
+	width:100%;
+}
+#assetList>tr{
+	width:100%;
+	background: red;
+}
+#assetList>tr>td{
+	text-align: center;
+	width: 25%;
+}
 /*负债框*/
 .debtBox{
 	position: absolute;
@@ -551,6 +590,20 @@ body{
 	width:50px;
 	height:20px;
 }
-.debtBox>select.assetChooseSelect>option{
+.debtBox>select.debtChooseSelect>option{
 	text-align: center;
+}
+.selectContent .debtContent{
+	overflow-y: auto;
+}
+#debtList{
+	width:100%;
+}
+#debtList>tr{
+	width:100%;
+	background: red;
+}
+#debtList>tr>td{
+	text-align: center;
+	width: 25%;
 }

@@ -92,7 +92,106 @@ angular.module('dashboard',[])
 			});
 		});
 	}
-	
+	/*插入输出表*/
+	$scope.submitOutput = function() {
+		$scope.outputBoxTag = false;
+		var nodeName = $scope.outputName;
+		var nodeValue = $scope.outputValue;
+		var tag = $scope.outputChooseNameTag;
+		var db = getCurrentDb();
+		initOutputTable();
+		db.transaction(function(trans) {
+			trans.executeSql("select * from OutputTable where OutputName = ?", [nodeName], function(ts, data) {
+				if(data.rows.length != 0) {
+					alert("项目已存在");
+				} else {
+					initOutputTable();
+					/*添加数据进去*/
+					/*初始化数据库输出表*/
+					$scope.outputBoxTag = false;
+					initOutputTable();
+					var db = getCurrentDb();
+					db.transaction(function(trans) {
+						trans.executeSql("insert into OutputTable(OutputName,OutputValue,OutputTag) values(?,?,?) ", [nodeName, nodeValue, tag], function(ts, data) {
+							/*隐藏输入框*/
+							showAllTheData();
+						}, function(ts, message) {
+							alert(message);
+						});
+					});
+				}
+
+			}, function(ts, message) {
+				alert(message);
+			});
+		});
+	}
+	/*插入资产表*/
+	$scope.submitAsset = function(){
+		$scope.assetBoxTag = false;
+		var nodeName = $scope.assetName;
+		var nodeValue = $scope.assetValue;
+		var tag = $scope.assetChooseNameTag;
+		var db = getCurrentDb();
+		initAssetTable();
+		db.transaction(function(trans) {
+			trans.executeSql("select * from AssetTable where AssetName = ?", [nodeName], function(ts, data) {
+				if(data.rows.length != 0) {
+					alert("项目已存在");
+				} else {
+					initAssetTable();
+					/*添加数据进去*/
+					/*初始化数据库输出表*/
+					$scope.assetBoxTag = false;
+					initAssetTable();
+					var db = getCurrentDb();
+					db.transaction(function(trans) {
+						trans.executeSql("insert into AssetTable(AssetName,AssetValue,AssetTag) values(?,?,?) ", [nodeName, nodeValue, tag], function(ts, data) {
+							/*隐藏输入框*/
+							showAllTheData();
+						}, function(ts, message) {
+							alert(message);
+						});
+					});
+				}
+			}, function(ts, message) {
+				alert(message);
+			});
+		});
+	}
+	/*插入负债表*/
+	$scope.submitDebt = function(){
+		$scope.debtBoxTag = false;
+		var nodeName = $scope.debtName;
+		var nodeValue = $scope.debtValue;
+		var tag = $scope.debtChooseNameTag;
+		var db = getCurrentDb();
+		initDebtTable();
+		db.transaction(function(trans) {
+			trans.executeSql("select * from DebtTable where DebtName = ?", [nodeName], function(ts, data) {
+				if(data.rows.length != 0) {
+					alert("项目已存在");
+				} else {
+					initDebtTable();
+					/*添加数据进去*/
+					/*初始化数据库输出表*/
+					$scope.debtBoxTag = false;
+					initDebtTable();
+					var db = getCurrentDb();
+					db.transaction(function(trans) {
+						trans.executeSql("insert into DebtTable(DebtName,DebtValue,DebtTag) values(?,?,?) ", [nodeName, nodeValue, tag], function(ts, data) {
+							/*隐藏输入框*/
+							showAllTheData();
+						}, function(ts, message) {
+							alert(message);
+						});
+					});
+				}
+			}, function(ts, message) {
+				alert(message);
+			});
+		});
+	}
 	function showAllTheData() {
             var db = getCurrentDb();//获取当前数据库
             /*展示输入表数据*/
@@ -119,6 +218,84 @@ angular.module('dashboard',[])
 						                		
                 	}
                 }, function(ts, message) {initInputTable();});
+            });
+            /*展示输出表数据*/
+           db.transaction(function (trans) {
+                trans.executeSql("select * from OutputTable ", [], function (ts, data) {
+                	var dataLength = data.rows.length;
+                	console.log(data);
+                	/*清空输入表*/
+                	document.querySelector("#outputList").innerHTML = "";
+                	for(var i=0;i<dataLength;i++){
+                		var newtr=document.createElement("tr");
+                		var td1 = document.createElement("td");
+                		td1.innerHTML = data.rows[i].OutputName;
+                		var td2 = document.createElement("td");
+                		td2.innerHTML = data.rows[i].OutputValue;
+                		var td3 = document.createElement("td");
+                		td3.innerHTML = data.rows[i].OutputTag;
+                		var td4 = document.createElement("td");
+                		td4.innerHTML = "<span>x</span>";
+                		newtr.appendChild(td1);
+                		newtr.appendChild(td2);
+                		newtr.appendChild(td3);
+                		newtr.appendChild(td4);
+                		document.querySelector("#outputList").appendChild(newtr);
+						                		
+                	}
+                }, function(ts, message) {initOutputTable();});
+            });
+            /*展示资产表格数据*/
+            db.transaction(function (trans) {
+                trans.executeSql("select * from AssetTable ", [], function (ts, data) {
+                	var dataLength = data.rows.length;
+                	console.log(data);
+                	/*清空输入表*/
+                	document.querySelector("#assetList").innerHTML = "";
+                	for(var i=0;i<dataLength;i++){
+                		var newtr=document.createElement("tr");
+                		var td1 = document.createElement("td");
+                		td1.innerHTML = data.rows[i].AssetName;
+                		var td2 = document.createElement("td");
+                		td2.innerHTML = data.rows[i].AssetValue;
+                		var td3 = document.createElement("td");
+                		td3.innerHTML = data.rows[i].AssetTag;
+                		var td4 = document.createElement("td");
+                		td4.innerHTML = "<span>x</span>";
+                		newtr.appendChild(td1);
+                		newtr.appendChild(td2);
+                		newtr.appendChild(td3);
+                		newtr.appendChild(td4);
+                		document.querySelector("#assetList").appendChild(newtr);
+						                		
+                	}
+                }, function(ts, message) {initAssetTable();});
+            });
+            /*展示负债表数据*/
+            db.transaction(function (trans) {
+                trans.executeSql("select * from DebtTable ", [], function (ts, data) {
+                	var dataLength = data.rows.length;
+                	console.log(data);
+                	/*清空输入表*/
+                	document.querySelector("#debtList").innerHTML = "";
+                	for(var i=0;i<dataLength;i++){
+                		var newtr=document.createElement("tr");
+                		var td1 = document.createElement("td");
+                		td1.innerHTML = data.rows[i].DebtName;
+                		var td2 = document.createElement("td");
+                		td2.innerHTML = data.rows[i].DebtValue;
+                		var td3 = document.createElement("td");
+                		td3.innerHTML = data.rows[i].DebtTag;
+                		var td4 = document.createElement("td");
+                		td4.innerHTML = "<span>x</span>";
+                		newtr.appendChild(td1);
+                		newtr.appendChild(td2);
+                		newtr.appendChild(td3);
+                		newtr.appendChild(td4);
+                		document.querySelector("#debtList").appendChild(newtr);
+						                		
+                	}
+                }, function(ts, message) {initDebtTable();});
             });
     }
 	showAllTheData();
@@ -188,7 +365,9 @@ angular.module('dashboard',[])
 	/*新建按钮函数*/
 	$scope.showContentBox = function(){
 		if($scope.currentChooseButton == "input"){
-			$scope.inputBoxTag = true;	
+			$scope.inputBoxTag = true;
+			$scope.inputName = "";
+			$scope.inputValue = "";
 		}else if($scope.currentChooseButton == "output"){
 			$scope.outputBoxTag = true;
 		}else if($scope.currentChooseButton == "asset"){
