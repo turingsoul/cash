@@ -182,7 +182,7 @@ angular.module('dashboard',[])
 						trans.executeSql("insert into DebtTable(DebtName,DebtValue,DebtTag) values(?,?,?) ", [nodeName, nodeValue, tag], function(ts, data) {
 							/*隐藏输入框*/
 							showAllTheData();
-						}, function(ts, message) {
+						}, function(ts, message){
 							alert(message);
 						});
 					});
@@ -192,7 +192,9 @@ angular.module('dashboard',[])
 			});
 		});
 	}
+	
 	function showAllTheData() {
+			
             var db = getCurrentDb();//获取当前数据库
             /*展示输入表数据*/
             db.transaction(function (trans) {
@@ -209,13 +211,12 @@ angular.module('dashboard',[])
                 		var td3 = document.createElement("td");
                 		td3.innerHTML = data.rows[i].InputTag;
                 		var td4 = document.createElement("td");
-                		td4.innerHTML = "<span>x</span>";
+                		td4.innerHTML = "<span onclick='deleteInputList(this)'>x</span>";
                 		newtr.appendChild(td1);
                 		newtr.appendChild(td2);
                 		newtr.appendChild(td3);
                 		newtr.appendChild(td4);
                 		document.querySelector("#inputList").appendChild(newtr);
-						                		
                 	}
                 }, function(ts, message) {initInputTable();});
             });
@@ -298,6 +299,7 @@ angular.module('dashboard',[])
                 }, function(ts, message) {initDebtTable();});
             });
     }
+	
 	showAllTheData();
 	$scope.inputNames = ["工资","利息","补贴","股息","生意","公积金","IQ产权","退休金","网络","其他"];
 	$scope.outputNames = ["衣","食","住","行","娱","文化","生活","赡养","还贷"];
