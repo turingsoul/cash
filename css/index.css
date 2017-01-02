@@ -607,3 +607,66 @@ body{
 	text-align: center;
 	width: 25%;
 }
+
+/*输入更新框*/
+.inputUpdateBox,.outputUpdateBox,.assetUpdateBox,.debtUpdateBox{
+	display:none;
+	position: absolute;
+	left:50%;
+	margin-left:-40%;
+	width:80%;
+	height:100px;
+	background:red;
+	top:50%;
+	border-radius: 10px;
+	background:rgba(0,43,76,1);
+}
+.inputUpdateBox>label,.outputUpdateBox>label,.assetUpdateBox>label,.debtUpdateBox>label{
+	position: absolute;
+	display: inline-block;
+	width:30%;
+	height:25px;
+	line-height:25px;
+	background:rgba(0,0,0,0.1);
+	border-radius: 5px;
+	top:10px;
+	left:40px;
+	color:white;
+	text-align: center;
+}
+.inputUpdateBox>input,.outputUpdateBox>input,.assetUpdateBox>input,.debtUpdateBox>input{
+	position: absolute;
+	right:40px;
+	top:10px;
+	width:30%;
+	height:25px;
+	text-align: center;
+	border: none;
+	border-radius: 5px;
+	outline: none;
+}
+.inputUpdateBox>div:nth-child(3),.outputUpdateBox>div:nth-child(3),.assetUpdateBox>div:nth-child(3),.debtUpdateBox>div:nth-child(3){
+	position: absolute;
+	width:80px;
+	height:30px;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 30px;
+	color:white;
+	top:50%;
+	left:40px;
+	background:rgba(200,200,200,0.4);
+}
+.inputUpdateBox>div:nth-child(4),.outputUpdateBox>div:nth-child(4),.assetUpdateBox>div:nth-child(4),.debtUpdateBox>div:nth-child(4){
+	position: absolute;
+	width:80px;
+	height:30px;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 30px;
+	color:white;
+	top:50%;
+	right:40px;
+	background:rgba(255,85,0,0.8);
+}
+

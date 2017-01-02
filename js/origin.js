@@ -141,7 +141,52 @@
 	function updateInputList(e){
 		var $current = $(e);
 		/*获取这行的内容*/
-		var toUpdateDate = $($current.find("td").get(0)).text();
+		var toUpdateDate1 = $($current.parent().find("td").get(0)).text();
+		var toUpdateDate2 = $($current.parent().find("td").get(1)).text();
+		document.querySelector(".inputUpdateBox").style.display = "block";
+		document.querySelector(".inputUpdateBox>label").innerHTML = toUpdateDate1;
+		document.querySelector(".inputUpdateBox>input").value = toUpdateDate2;
 		/*数据库删除*/
 		/*updateDebtListData(toUpdateDate);*/
 	}
+	/*更新输出表*/
+	function updateOutputList(e){
+		var $current = $(e);
+		/*获取这行的内容*/
+		var toUpdateDate1 = $($current.parent().find("td").get(0)).text();
+		var toUpdateDate2 = $($current.parent().find("td").get(1)).text();
+		document.querySelector(".outputUpdateBox").style.display = "block";
+		document.querySelector(".outputUpdateBox>label").innerHTML = toUpdateDate1;
+		document.querySelector(".outputUpdateBox>input").value = toUpdateDate2;
+		/*数据库删除*/
+		/*updateDebtListData(toUpdateDate);*/
+	}
+	/*更新资产表*/
+	function updateAssetList(e){
+		var $current = $(e);
+		/*获取这行的内容*/
+		var toUpdateDate1 = $($current.parent().find("td").get(0)).text();
+		var toUpdateDate2 = $($current.parent().find("td").get(1)).text();
+		document.querySelector(".assetUpdateBox").style.display = "block";
+		document.querySelector(".assetUpdateBox>label").innerHTML = toUpdateDate1;
+		document.querySelector(".assetUpdateBox>input").value = toUpdateDate2;
+		/*数据库删除*/
+		/*updateDebtListData(toUpdateDate);*/
+	}
+	/*更新负债表*/
+	function updateDebtList(e){
+		var $current = $(e);
+		/*获取这行的内容*/
+		var toUpdateDate1 = $($current.parent().find("td").get(0)).text();
+		var toUpdateDate2 = $($current.parent().find("td").get(1)).text();
+		document.querySelector(".debtUpdateBox").style.display = "block";
+		document.querySelector(".debtUpdateBox>label").innerHTML = toUpdateDate1;
+		document.querySelector(".debtUpdateBox>input").value = toUpdateDate2;
+		/*数据库删除*/
+		/*updateDebtListData(toUpdateDate);*/
+	}
+	/*取消输入,输出，资产，负债框*/
+	function cancelInputUpdateBox(){ document.querySelector(".inputUpdateBox").style.display = "none"; }
+	function cancelOutputUpdateBox(){ document.querySelector(".outputUpdateBox").style.display = "none"; }
+	function cancelAssetUpdateBox(){ document.querySelector(".assetUpdateBox").style.display = "none"; }
+	function cancelDebtUpdateBox(){ document.querySelector(".debtUpdateBox").style.display = "none"; }

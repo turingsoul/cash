@@ -213,12 +213,14 @@ angular.module('dashboard',[])
                 	document.querySelector("#inputList").innerHTML = "";
                 	for(var i=0;i<dataLength;i++){
                 		var newtr=document.createElement("tr");
-                		newtr.setAttribute("onclick","updateInputList(this);")
                 		var td1 = document.createElement("td");
+                		td1.setAttribute("onclick","updateInputList(this);")
                 		td1.innerHTML = data.rows[i].InputName;
                 		var td2 = document.createElement("td");
+                		td2.setAttribute("onclick","updateInputList(this);")
                 		td2.innerHTML = data.rows[i].InputValue;
                 		var td3 = document.createElement("td");
+                		td3.setAttribute("onclick","updateInputList(this);")
                 		td3.innerHTML = data.rows[i].InputTag;
                 		var td4 = document.createElement("td");
                 		td4.innerHTML = "<span onclick='deleteInputList(this)'>x</span>";
@@ -240,10 +242,13 @@ angular.module('dashboard',[])
                 	for(var i=0;i<dataLength;i++){
                 		var newtr=document.createElement("tr");
                 		var td1 = document.createElement("td");
+                		td1.setAttribute("onclick","updateOutputList(this);")
                 		td1.innerHTML = data.rows[i].OutputName;
                 		var td2 = document.createElement("td");
+                		td2.setAttribute("onclick","updateOutputList(this);")
                 		td2.innerHTML = data.rows[i].OutputValue;
                 		var td3 = document.createElement("td");
+                		td3.setAttribute("onclick","updateOutputList(this);")
                 		td3.innerHTML = data.rows[i].OutputTag;
                 		var td4 = document.createElement("td");
                 		td4.innerHTML = "<span onclick='deleteOutputList(this)'>x</span>";
@@ -266,10 +271,13 @@ angular.module('dashboard',[])
                 	for(var i=0;i<dataLength;i++){
                 		var newtr=document.createElement("tr");
                 		var td1 = document.createElement("td");
+                		td1.setAttribute("onclick","updateAssetList(this);")
                 		td1.innerHTML = data.rows[i].AssetName;
                 		var td2 = document.createElement("td");
+                		td2.setAttribute("onclick","updateAssetList(this);")
                 		td2.innerHTML = data.rows[i].AssetValue;
                 		var td3 = document.createElement("td");
+                		td3.setAttribute("onclick","updateAssetList(this);")
                 		td3.innerHTML = data.rows[i].AssetTag;
                 		var td4 = document.createElement("td");
                 		td4.innerHTML = "<span onclick='deleteAssetList(this)'>x</span>";
@@ -292,10 +300,13 @@ angular.module('dashboard',[])
                 	for(var i=0;i<dataLength;i++){
                 		var newtr=document.createElement("tr");
                 		var td1 = document.createElement("td");
+                		td1.setAttribute("onclick","updateDebtList(this);")
                 		td1.innerHTML = data.rows[i].DebtName;
                 		var td2 = document.createElement("td");
+                		td2.setAttribute("onclick","updateDebtList(this);")
                 		td2.innerHTML = data.rows[i].DebtValue;
                 		var td3 = document.createElement("td");
+                		td3.setAttribute("onclick","updateDebtList(this);")
                 		td3.innerHTML = data.rows[i].DebtTag;
                 		var td4 = document.createElement("td");
                 		td4.innerHTML = "<span onclick='deleteDebtList(this)'>x</span>";
