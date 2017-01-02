@@ -268,6 +268,9 @@ angular.module('dashboard',[])
 						document.querySelector("#outputSum").innerHTML = outputSum;
 						/*计算现金流*/
 						document.querySelector(".blackBoard>.cashflowFont").innerHTML = "￥"+(parseInt(document.querySelector("#inputSum").innerHTML) - parseInt(document.querySelector("#outputSum").innerHTML));
+						/*计算收支比*/
+						document.querySelector(".balanceOfPayment>.number").innerHTML =(parseInt(document.querySelector("#outputSum").innerHTML) / parseInt(document.querySelector("#inputSum").innerHTML)).toFixed(2);
+						
 					}, function(ts, message) {
 						initOutputTable();
 					});
@@ -339,6 +342,8 @@ angular.module('dashboard',[])
 						document.querySelector("#debtSum").innerHTML = debtSum;
 						/*显示净资产*/
 						document.querySelector(".pureAsset>.spanNumberPureAsset").innerHTML = parseInt(document.querySelector("#assetSum").innerHTML)-parseInt(document.querySelector("#debtSum").innerHTML);
+						/*计算风险应对能力*/
+						document.querySelector(".balanceOfSafety>.number").innerHTML = (cashSum/parseInt(document.querySelector("#outputSum").innerHTML)).toFixed(1);
 					}, function(ts, message) {
 						initDebtTable();
 					});
@@ -360,8 +365,6 @@ angular.module('dashboard',[])
 	$scope.outputChooseNameTag = "食";
 	$scope.assetChooseNameTag = "存款";
 	$scope.debtChooseNameTag = "负债";
-	$scope.balanceOfPayment = "12.3";
-	$scope.balanceOfSafety = "1";
 	$scope.currentChooseButton = "input";
 	$scope.inputBoxTag = false;
 	$scope.outputBoxTag = false;

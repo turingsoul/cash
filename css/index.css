@@ -166,7 +166,7 @@ body{
 	color:rgba(255,255,255,0.3);
 	border:1px solid rgba(255,255,255,0.2);
 	background:rgba(0,0,0,0.4);
-	text-indent: 10px;
+	text-indent: 5px;
 	border-radius: 6px;
 }
 .monitor .balanceOfSafety>.number{
@@ -319,7 +319,7 @@ body{
 }
 #inputList>tr{
 	width:100%;
-	background: red;
+	background: rgba(255,255,0,0.1);
 }
 #inputList>tr>td{
 	text-align: center;
@@ -413,7 +413,7 @@ body{
 }
 #outputList>tr{
 	width:100%;
-	background: red;
+	background: rgba(255,0,0,0.3);
 }
 #outputList>tr>td{
 	text-align: center;
@@ -507,7 +507,7 @@ body{
 }
 #assetList>tr{
 	width:100%;
-	background: red;
+	background: rgba(200,200,200,0.2);
 }
 #assetList>tr>td{
 	text-align: center;
@@ -601,7 +601,7 @@ body{
 }
 #debtList>tr{
 	width:100%;
-	background: red;
+	background: rgba(80,40,200,0.1);
 }
 #debtList>tr>td{
 	text-align: center;

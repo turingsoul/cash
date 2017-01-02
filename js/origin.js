@@ -6,9 +6,13 @@
 			trans.executeSql("select * from InputTable ", [], function(ts, data) {
 				var dataLength = data.rows.length;
 				var inputSum = 0;
+				var passiveInputSum = 0;
 				/*清空输入表*/
 				document.querySelector("#inputList").innerHTML = "";
 				for(var i = 0; i < dataLength; i++) {
+					if(data.rows[i].InputTag == "租金"||data.rows[i].InputTag == "IQ产权"||data.rows[i].InputTag == "退休金"){
+						passiveInputSum = passiveInputSum+parseInt(data.rows[i].InputValue);
+					}
 					inputSum = inputSum + parseInt(data.rows[i].InputValue);
 					var newtr = document.createElement("tr");
 					var td1 = document.createElement("td");
@@ -29,6 +33,7 @@
 					document.querySelector("#inputList").appendChild(newtr);
 				}
 				document.querySelector("#inputSum").innerHTML = inputSum;
+				document.querySelector(".passiveIncome>.spanNumberPassiveIncome").innerHTML = passiveInputSum;
 				/*展示输出表数据*/
 				db.transaction(function(trans) {
 					trans.executeSql("select * from OutputTable ", [], function(ts, data) {
@@ -59,6 +64,9 @@
 						document.querySelector("#outputSum").innerHTML = outputSum;
 						/*计算现金流*/
 						document.querySelector(".blackBoard>.cashflowFont").innerHTML = "￥"+(parseInt(document.querySelector("#inputSum").innerHTML) - parseInt(document.querySelector("#outputSum").innerHTML));
+						/*计算收支比*/
+						document.querySelector(".balanceOfPayment>.number").innerHTML =(parseInt(document.querySelector("#outputSum").innerHTML) / parseInt(document.querySelector("#inputSum").innerHTML)).toFixed(2);
+						
 					}, function(ts, message) {
 						initOutputTable();
 					});
@@ -130,6 +138,8 @@
 						document.querySelector("#debtSum").innerHTML = debtSum;
 						/*显示净资产*/
 						document.querySelector(".pureAsset>.spanNumberPureAsset").innerHTML = parseInt(document.querySelector("#assetSum").innerHTML)-parseInt(document.querySelector("#debtSum").innerHTML);
+						/*计算风险应对能力*/
+						document.querySelector(".balanceOfSafety>.number").innerHTML = (cashSum/parseInt(document.querySelector("#outputSum").innerHTML)).toFixed(1);
 					}, function(ts, message) {
 						initDebtTable();
 					});
