@@ -210,9 +210,13 @@ angular.module('dashboard',[])
 			trans.executeSql("select * from InputTable ", [], function(ts, data) {
 				var dataLength = data.rows.length;
 				var inputSum = 0;
+				var passiveInputSum = 0;
 				/*清空输入表*/
 				document.querySelector("#inputList").innerHTML = "";
 				for(var i = 0; i < dataLength; i++) {
+					if(data.rows[i].InputTag == "租金"||data.rows[i].InputTag == "IQ产权"||data.rows[i].InputTag == "退休金"){
+						passiveInputSum = passiveInputSum+parseInt(data.rows[i].InputValue);
+					}
 					inputSum = inputSum + parseInt(data.rows[i].InputValue);
 					var newtr = document.createElement("tr");
 					var td1 = document.createElement("td");
@@ -233,6 +237,7 @@ angular.module('dashboard',[])
 					document.querySelector("#inputList").appendChild(newtr);
 				}
 				document.querySelector("#inputSum").innerHTML = inputSum;
+				document.querySelector(".passiveIncome>.spanNumberPassiveIncome").innerHTML = passiveInputSum;
 				/*展示输出表数据*/
 				db.transaction(function(trans) {
 					trans.executeSql("select * from OutputTable ", [], function(ts, data) {
@@ -346,7 +351,7 @@ angular.module('dashboard',[])
 	}
 	
 	showAllTheData();
-	$scope.inputNames = ["工资","利息","补贴","股息","生意","公积金","IQ产权","退休金","网络","其他"];
+	$scope.inputNames = ["工资","利息","补贴","股息","生意","租金","公积金","IQ产权","退休金","网络","其他"];
 	$scope.outputNames = ["衣","食","住","行","娱","文化","生活","赡养","还贷"];
 	$scope.assetNames = ["存款","股票","房产","汽车","债券","期权"];
 	$scope.debtNames = ["负债","贷款"];
@@ -355,7 +360,6 @@ angular.module('dashboard',[])
 	$scope.outputChooseNameTag = "食";
 	$scope.assetChooseNameTag = "存款";
 	$scope.debtChooseNameTag = "负债";
-	$scope.passiveIncome = 12313;
 	$scope.balanceOfPayment = "12.3";
 	$scope.balanceOfSafety = "1";
 	$scope.currentChooseButton = "input";
