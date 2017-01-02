@@ -218,6 +218,7 @@
 		db.transaction(function(trans) {
 			initInputTable();
 			trans.executeSql("DELETE  from InputTable where InputName = ?", [deletename], function(ts, data) {
+				showAllTheData();
 			}, function(ts, message) {
 				alert(message);
 			});
@@ -229,6 +230,7 @@
 		db.transaction(function(trans) {
 			initOutputTable();
 			trans.executeSql("DELETE  from OutputTable where OutputName = ?", [deletename], function(ts, data) {
+				showAllTheData();
 			}, function(ts, message) {
 				alert(message);
 			});
@@ -240,6 +242,7 @@
 		db.transaction(function(trans) {
 			initAssetTable();
 			trans.executeSql("DELETE  from AssetTable where AssetName = ?", [deletename], function(ts, data) {
+				showAllTheData();
 			}, function(ts, message) {
 				alert(message);
 			});

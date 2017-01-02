@@ -203,123 +203,161 @@ angular.module('dashboard',[])
 	}
 	
 	function showAllTheData() {
-			
-            var db = getCurrentDb();//获取当前数据库
-            /*展示输入表数据*/
-            db.transaction(function (trans) {
-                trans.executeSql("select * from InputTable ", [], function (ts, data) {
-                	var dataLength = data.rows.length;
-                	/*清空输入表*/
-                	document.querySelector("#inputList").innerHTML = "";
-                	for(var i=0;i<dataLength;i++){
-                		var newtr=document.createElement("tr");
-                		var td1 = document.createElement("td");
-                		td1.setAttribute("onclick","updateInputList(this);")
-                		td1.innerHTML = data.rows[i].InputName;
-                		var td2 = document.createElement("td");
-                		td2.setAttribute("onclick","updateInputList(this);")
-                		td2.innerHTML = data.rows[i].InputValue;
-                		var td3 = document.createElement("td");
-                		td3.setAttribute("onclick","updateInputList(this);")
-                		td3.innerHTML = data.rows[i].InputTag;
-                		var td4 = document.createElement("td");
-                		td4.innerHTML = "<span onclick='deleteInputList(this)'>x</span>";
-                		newtr.appendChild(td1);
-                		newtr.appendChild(td2);
-                		newtr.appendChild(td3);
-                		newtr.appendChild(td4);
-                		document.querySelector("#inputList").appendChild(newtr);
-                	}
-                }, function(ts, message) {initInputTable();});
-            });
-            /*展示输出表数据*/
-           db.transaction(function (trans) {
-                trans.executeSql("select * from OutputTable ", [], function (ts, data) {
-                	var dataLength = data.rows.length;
-                	console.log(data);
-                	/*清空输出表*/
-                	document.querySelector("#outputList").innerHTML = "";
-                	for(var i=0;i<dataLength;i++){
-                		var newtr=document.createElement("tr");
-                		var td1 = document.createElement("td");
-                		td1.setAttribute("onclick","updateOutputList(this);")
-                		td1.innerHTML = data.rows[i].OutputName;
-                		var td2 = document.createElement("td");
-                		td2.setAttribute("onclick","updateOutputList(this);")
-                		td2.innerHTML = data.rows[i].OutputValue;
-                		var td3 = document.createElement("td");
-                		td3.setAttribute("onclick","updateOutputList(this);")
-                		td3.innerHTML = data.rows[i].OutputTag;
-                		var td4 = document.createElement("td");
-                		td4.innerHTML = "<span onclick='deleteOutputList(this)'>x</span>";
-                		newtr.appendChild(td1);
-                		newtr.appendChild(td2);
-                		newtr.appendChild(td3);
-                		newtr.appendChild(td4);
-                		document.querySelector("#outputList").appendChild(newtr);
-						                		
-                	}
-                }, function(ts, message) {initOutputTable();});
-            });
-            /*展示资产表格数据*/
-            db.transaction(function (trans) {
-                trans.executeSql("select * from AssetTable ", [], function (ts, data) {
-                	var dataLength = data.rows.length;
-                	console.log(data);
-                	/*清空输入表*/
-                	document.querySelector("#assetList").innerHTML = "";
-                	for(var i=0;i<dataLength;i++){
-                		var newtr=document.createElement("tr");
-                		var td1 = document.createElement("td");
-                		td1.setAttribute("onclick","updateAssetList(this);")
-                		td1.innerHTML = data.rows[i].AssetName;
-                		var td2 = document.createElement("td");
-                		td2.setAttribute("onclick","updateAssetList(this);")
-                		td2.innerHTML = data.rows[i].AssetValue;
-                		var td3 = document.createElement("td");
-                		td3.setAttribute("onclick","updateAssetList(this);")
-                		td3.innerHTML = data.rows[i].AssetTag;
-                		var td4 = document.createElement("td");
-                		td4.innerHTML = "<span onclick='deleteAssetList(this)'>x</span>";
-                		newtr.appendChild(td1);
-                		newtr.appendChild(td2);
-                		newtr.appendChild(td3);
-                		newtr.appendChild(td4);
-                		document.querySelector("#assetList").appendChild(newtr);
-						                		
-                	}
-                }, function(ts, message) {initAssetTable();});
-            });
-            /*展示负债表数据*/
-            db.transaction(function (trans) {
-                trans.executeSql("select * from DebtTable ", [], function (ts, data) {
-                	var dataLength = data.rows.length;
-                	console.log(data);
-                	/*清空输入表*/
-                	document.querySelector("#debtList").innerHTML = "";
-                	for(var i=0;i<dataLength;i++){
-                		var newtr=document.createElement("tr");
-                		var td1 = document.createElement("td");
-                		td1.setAttribute("onclick","updateDebtList(this);")
-                		td1.innerHTML = data.rows[i].DebtName;
-                		var td2 = document.createElement("td");
-                		td2.setAttribute("onclick","updateDebtList(this);")
-                		td2.innerHTML = data.rows[i].DebtValue;
-                		var td3 = document.createElement("td");
-                		td3.setAttribute("onclick","updateDebtList(this);")
-                		td3.innerHTML = data.rows[i].DebtTag;
-                		var td4 = document.createElement("td");
-                		td4.innerHTML = "<span onclick='deleteDebtList(this)'>x</span>";
-                		newtr.appendChild(td1);
-                		newtr.appendChild(td2);
-                		newtr.appendChild(td3);
-                		newtr.appendChild(td4);
-                		document.querySelector("#debtList").appendChild(newtr);
-						                		
-                	}
-                }, function(ts, message) {initDebtTable();});
-            });
-    }
+
+		var db = getCurrentDb(); //获取当前数据库
+		/*展示输入表数据*/
+		db.transaction(function(trans) {
+			trans.executeSql("select * from InputTable ", [], function(ts, data) {
+				var dataLength = data.rows.length;
+				var inputSum = 0;
+				/*清空输入表*/
+				document.querySelector("#inputList").innerHTML = "";
+				for(var i = 0; i < dataLength; i++) {
+					inputSum = inputSum + parseInt(data.rows[i].InputValue);
+					var newtr = document.createElement("tr");
+					var td1 = document.createElement("td");
+					td1.setAttribute("onclick", "updateInputList(this);")
+					td1.innerHTML = data.rows[i].InputName;
+					var td2 = document.createElement("td");
+					td2.setAttribute("onclick", "updateInputList(this);")
+					td2.innerHTML = data.rows[i].InputValue;
+					var td3 = document.createElement("td");
+					td3.setAttribute("onclick", "updateInputList(this);")
+					td3.innerHTML = data.rows[i].InputTag;
+					var td4 = document.createElement("td");
+					td4.innerHTML = "<span onclick='deleteInputList(this)'>x</span>";
+					newtr.appendChild(td1);
+					newtr.appendChild(td2);
+					newtr.appendChild(td3);
+					newtr.appendChild(td4);
+					document.querySelector("#inputList").appendChild(newtr);
+				}
+				document.querySelector("#inputSum").innerHTML = inputSum;
+				/*展示输出表数据*/
+				db.transaction(function(trans) {
+					trans.executeSql("select * from OutputTable ", [], function(ts, data) {
+						var dataLength = data.rows.length;
+						var outputSum = 0;
+						console.log(data);
+						/*清空输出表*/
+						document.querySelector("#outputList").innerHTML = "";
+						for(var i = 0; i < dataLength; i++) {
+							outputSum = outputSum + parseInt(data.rows[i].OutputValue);
+							var newtr = document.createElement("tr");
+							var td1 = document.createElement("td");
+							td1.setAttribute("onclick", "updateOutputList(this);")
+							td1.innerHTML = data.rows[i].OutputName;
+							var td2 = document.createElement("td");
+							td2.setAttribute("onclick", "updateOutputList(this);")
+							td2.innerHTML = data.rows[i].OutputValue;
+							var td3 = document.createElement("td");
+							td3.setAttribute("onclick", "updateOutputList(this);")
+							td3.innerHTML = data.rows[i].OutputTag;
+							var td4 = document.createElement("td");
+							td4.innerHTML = "<span onclick='deleteOutputList(this)'>x</span>";
+							newtr.appendChild(td1);
+							newtr.appendChild(td2);
+							newtr.appendChild(td3);
+							newtr.appendChild(td4);
+							document.querySelector("#outputList").appendChild(newtr);
+						}
+						document.querySelector("#outputSum").innerHTML = outputSum;
+						/*计算现金流*/
+						document.querySelector(".blackBoard>.cashflowFont").innerHTML = "￥"+(parseInt(document.querySelector("#inputSum").innerHTML) - parseInt(document.querySelector("#outputSum").innerHTML));
+					}, function(ts, message) {
+						initOutputTable();
+					});
+				});
+			}, function(ts, message) {
+				initInputTable();
+			});
+		});
+		/*展示资产表格数据*/
+		db.transaction(function(trans) {
+			trans.executeSql("select * from AssetTable ", [], function(ts, data) {
+				var dataLength = data.rows.length;
+				var assetSum = 0;
+				console.log(data);
+				/*清空输入表*/
+				document.querySelector("#assetList").innerHTML = "";
+				for(var i = 0; i < dataLength; i++) {
+					assetSum = assetSum + parseInt(data.rows[i].AssetValue)
+					var newtr = document.createElement("tr");
+					var td1 = document.createElement("td");
+					td1.setAttribute("onclick", "updateAssetList(this);")
+					td1.innerHTML = data.rows[i].AssetName;
+					var td2 = document.createElement("td");
+					td2.setAttribute("onclick", "updateAssetList(this);")
+					td2.innerHTML = data.rows[i].AssetValue;
+					var td3 = document.createElement("td");
+					td3.setAttribute("onclick", "updateAssetList(this);")
+					td3.innerHTML = data.rows[i].AssetTag;
+					var td4 = document.createElement("td");
+					td4.innerHTML = "<span onclick='deleteAssetList(this)'>x</span>";
+					newtr.appendChild(td1);
+					newtr.appendChild(td2);
+					newtr.appendChild(td3);
+					newtr.appendChild(td4);
+					document.querySelector("#assetList").appendChild(newtr);
+				}
+				document.querySelector("#assetSum").innerHTML = assetSum;
+				/*展示负债表数据*/
+				db.transaction(function(trans) {
+					trans.executeSql("select * from DebtTable ", [], function(ts, data) {
+						var dataLength = data.rows.length;
+						var debtSum = 0;
+						console.log(data);
+						/*清空输入表*/
+						document.querySelector("#debtList").innerHTML = "";
+						for(var i = 0; i < dataLength; i++) {
+							debtSum = debtSum + parseInt(data.rows[i].DebtValue);
+							var newtr = document.createElement("tr");
+							var td1 = document.createElement("td");
+							td1.setAttribute("onclick", "updateDebtList(this);")
+							td1.innerHTML = data.rows[i].DebtName;
+							var td2 = document.createElement("td");
+							td2.setAttribute("onclick", "updateDebtList(this);")
+							td2.innerHTML = data.rows[i].DebtValue;
+							var td3 = document.createElement("td");
+							td3.setAttribute("onclick", "updateDebtList(this);")
+							td3.innerHTML = data.rows[i].DebtTag;
+							var td4 = document.createElement("td");
+							td4.innerHTML = "<span onclick='deleteDebtList(this)'>x</span>";
+							newtr.appendChild(td1);
+							newtr.appendChild(td2);
+							newtr.appendChild(td3);
+							newtr.appendChild(td4);
+							document.querySelector("#debtList").appendChild(newtr);
+						}
+						document.querySelector("#debtSum").innerHTML = debtSum;
+						/*显示净资产*/
+						document.querySelector(".pureAsset>.spanNumberPureAsset").innerHTML = parseInt(document.querySelector("#assetSum").innerHTML)-parseInt(document.querySelector("#debtSum").innerHTML);
+					}, function(ts, message) {
+						initDebtTable();
+					});
+				});
+			}, function(ts, message) {
+				initAssetTable();
+			});
+		});
+		
+		/*计算手头现金额*/
+		db.transaction(function(trans) {
+					trans.executeSql("select * from AssetTable where AssetTag = '存款'", function(ts, data) {
+						var dataLength = data.rows.length;
+						alert(dataLength);
+						var CashSum = 0;
+						for(var i = 0; i < dataLength; i++) {
+							CashSum = CashSum+parseInt(data.rows[i].AssetValue); 
+						}
+						/*显示手头现金额*/
+						document.querySelector(".moneyCanUse>.spanNumberMoney").innerHTML = CashSum;
+					}, function(ts, message) {
+						alert(message);
+						initAssetTable();
+					});
+		});
+	}
 	
 	showAllTheData();
 	$scope.inputNames = ["工资","利息","补贴","股息","生意","公积金","IQ产权","退休金","网络","其他"];
@@ -331,10 +369,7 @@ angular.module('dashboard',[])
 	$scope.outputChooseNameTag = "食";
 	$scope.assetChooseNameTag = "存款";
 	$scope.debtChooseNameTag = "负债";
-	$scope.cashFlow = 2-3;
-	$scope.netAsset = -12000000.11;
 	$scope.passiveIncome = 12313;
-	$scope.cash = -500000.23;
 	$scope.balanceOfPayment = "12.3";
 	$scope.balanceOfSafety = "1";
 	$scope.currentChooseButton = "input";

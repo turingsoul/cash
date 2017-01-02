@@ -670,3 +670,10 @@ body{
 	background:rgba(255,85,0,0.8);
 }
 
+.sumNumber{
+	width:100%;
+	text-align: center;
+	height:25px;
+	line-height: 25px;
+	letter-spacing: 6px;
+}

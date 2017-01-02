@@ -13,11 +13,11 @@
 		<div class = "firstPage">
 			<div class="blackBoard" >
 				<span class = "cashflow">CashFlow:</span>
-				<span class = "cashflowFont">￥{{cashFlow}}</span>
+				<span class = "cashflowFont"></span>
 			</div>
 			<div class = "pureAsset">
 				<span class = "spanPureAsset">Net-Asset:</span>
-				<span class = "spanNumberPureAsset">{{netAsset}}</span>
+				<span class = "spanNumberPureAsset"></span>
 			</div>
 			<div class = "passiveIncome">
 				<span class = "spanPassiveIncome">Passive:</span>
@@ -25,7 +25,7 @@
 			</div>
 			<div class = "moneyCanUse">
 				<span class = "spanMoneyCanUse">Cash:</span>
-				<span class = "spanNumberMoney">{{cash}}</span>
+				<span class = "spanNumberMoney"></span>
 			</div>
 			<div class = "monitor">
 				<div class = "balanceOfPayment">
@@ -45,15 +45,20 @@
 			</div>
 			<div class="selectContent">
 				<div class = "inputContent" ng-show = "inputJudge()">
+					<!--输入求和-->
+					<div id="inputSum" class = "sumNumber"></div>
 					<table id="inputList"></table>
 				</div>
 				<div class = "outputContent" ng-show = "outputJudge()">
+					<div id="outputSum" class = "sumNumber"></div>
 					<table id="outputList"></table>
 				</div>
 				<div class = "assetContent" ng-show = "assetJudge()">
+					<div id="assetSum" class = "sumNumber"></div>
 					<table id="assetList"></table>
 				</div>
 				<div class = "debtContent" ng-show = "debtJudge()">
+					<div id="debtSum" class = "sumNumber"></div>
 					<table id="debtList"></table>
 				</div>
 			</div>
@@ -122,6 +127,7 @@
 				<div onclick = "cancelDebtUpdateBox();">取消</div>
 				<div onclick = "sureDebtUpdateBox();">确定</div>
 			</div>
+			
 		</div>
 		
 	</body>
